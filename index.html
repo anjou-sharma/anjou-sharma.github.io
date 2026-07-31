@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anjou Sharma — Cognitive Neuroscience Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F3F5F6;
+    --bg-alt: #E9ECEF;
+    --ink: #14171F;
+    --ink-soft: #4B5160;
+    --ink-faint: #838B99;
+    --violet: #4B3F86;
+    --violet-soft: #8177B3;
+    --gold: #B8912B;
+    --line: rgba(20,23,31,0.12);
+    --line-strong: rgba(20,23,31,0.22);
+    --max: 780px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--violet); color: #fff; }
+
+  a{ color: var(--violet); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--violet); outline-offset: 3px; }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(243,245,246,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content: space-between;
+    padding-top: 16px; padding-bottom: 16px;
+  }
+  .nav-mark{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .nav-links{ display:flex; gap: 22px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    color: var(--ink-soft); font-size: 14px; font-weight: 500;
+  }
+  .nav-links a:hover{ color: var(--violet); text-decoration: none; }
+  @media (max-width: 560px){
+    .nav-links{ gap: 14px; }
+    .nav-links a{ font-size: 12.5px; }
+  }
+
+  /* HERO */
+  header.hero{
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 22px;
+  }
+
+  .hero-name{
+    position: relative;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(42px, 8vw, 68px);
+    line-height: 1.02;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .hero-name .ghost{
+    position: absolute; inset: 0;
+    color: var(--violet-soft);
+    opacity: 0.55;
+    transform: translate(6px, 5px);
+    filter: blur(2px);
+    animation: settle 1.4s cubic-bezier(.2,.7,.3,1) forwards;
+    z-index: -1;
+  }
+  @keyframes settle{
+    0%   { transform: translate(14px, 11px); opacity: 0.6; filter: blur(6px); }
+    100% { transform: translate(1px, 1px);  opacity: 0;   filter: blur(0px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-name .ghost{ animation: none; opacity: 0; }
+  }
+
+  .hero-tagline{
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(19px, 2.6vw, 24px);
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 0 28px;
+  }
+  .hero-meta{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin: 0 0 32px;
+  }
+  .hero-meta strong{ color: var(--ink); font-weight: 600; }
+
+  .hero-actions{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px;
+    font-size: 14px; font-weight: 500;
+    border-radius: 3px;
+    border: 1px solid var(--line-strong);
+    transition: all 0.15s ease;
+  }
+  .btn:hover{ text-decoration: none; }
+  .btn-primary{
+    background: var(--ink); color: #fff; border-color: var(--ink);
+  }
+  .btn-primary:hover{ background: var(--violet); border-color: var(--violet); }
+  .btn-ghost{ background: transparent; color: var(--ink); }
+  .btn-ghost:hover{ border-color: var(--ink); background: var(--bg-alt); }
+
+  /* SECTIONS */
+  section{ padding: 64px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom: none; }
+
+  .section-head{
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-num{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px; color: var(--ink-faint);
+  }
+  h2{
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .lede{ color: var(--ink-soft); font-size: 16px; max-width: 620px; margin: 0 0 28px; }
+
+  /* ABOUT */
+  .about-grid{ display: grid; grid-template-columns: 1fr; gap: 22px; }
+  .about-grid p{ margin: 0 0 4px; color: var(--ink-soft); }
+  .about-grid p strong{ color: var(--ink); font-weight: 600; }
+
+  .pill-row{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .pill{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 5px 11px;
+    border: 1px solid var(--line-strong);
+    border-radius: 20px;
+    color: var(--ink-soft);
+  }
+
+  /* RESEARCH CARDS */
+  .research-card{
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .research-card:first-child{ border-top: none; padding-top: 0; }
+  .research-title{
+    font-weight: 600; font-size: 16.5px; margin: 0 0 6px; color: var(--ink);
+  }
+  .research-role{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 0 0 10px;
+  }
+  .research-desc{ color: var(--ink-soft); margin: 0; font-size: 15px; }
+
+  /* PUBLICATIONS */
+  .pub-list{ list-style: none; margin:0; padding:0; counter-reset: pub; }
+  .pub-item{
+    counter-increment: pub;
+    display: grid; grid-template-columns: 34px 1fr; gap: 14px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .pub-item:first-child{ border-top: none; }
+  .pub-item::before{
+    content: counter(pub, decimal-leading-zero);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    padding-top: 2px;
+  }
+  .pub-item strong{ color: var(--ink); }
+  .pub-venue{ color: var(--violet); font-style: italic; }
+  .pub-tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px; color: var(--ink-faint);
+    border: 1px solid var(--line); border-radius: 3px;
+    padding: 1px 6px; margin-left: 6px; vertical-align: 1px;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{ position: relative; padding-left: 22px; }
+  .timeline::before{
+    content:''; position:absolute; left: 4px; top: 6px; bottom: 6px;
+    width: 1px; background: var(--line-strong);
+  }
+  .t-item{ position: relative; padding-bottom: 26px; }
+  .t-item:last-child{ padding-bottom: 0; }
+  .t-item::before{
+    content:''; position:absolute; left: -22px; top: 4px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--violet);
+  }
+  .t-date{
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px;
+    color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .t-role{ font-weight: 600; font-size: 15.5px; margin: 4px 0 2px; }
+  .t-org{ font-size: 14px; color: var(--ink-soft); }
+
+  /* AWARDS */
+  .awards-list{ list-style:none; margin:0; padding:0; }
+  .award-item{
+    display:flex; justify-content: space-between; gap: 16px;
+    padding: 13px 0; border-top: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .award-item:first-child{ border-top:none; }
+  .award-name{ color: var(--ink); }
+  .award-amount{
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .cert-note{ font-size: 13.5px; color: var(--ink-faint); margin-top: 20px; }
+
+  /* CONTACT */
+  .contact-box{
+    display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between;
+    gap: 20px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .contact-box .lede{ margin:0; max-width: 420px; }
+  footer{
+    padding: 32px 0 64px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-mark">A. SHARMA</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Episodic memory · Mental imagery · Aphantasia</p>
+    <h1 class="hero-name">
+      <span class="ghost" aria-hidden="true">Anjou Sharma</span>
+      Anjou Sharma
+    </h1>
+    <p class="hero-tagline">Studying how memory takes shape — with and without a mind's eye.</p>
+    <p class="hero-meta">
+      <strong>Lab Manager &amp; Research Assistant</strong>, Imagination and Modal Cognition Lab<br>
+      Center for Cognitive Neuroscience, Duke University
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:anjou.sharma@duke.edu">Get in touch</a>
+      <a class="btn btn-ghost" href="Anjou_Sharma_CV.pdf" download>Download CV (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <p>I'm a <strong>Lab Manager, Research Assistant, and SSNAP Coordinator</strong> at Duke University's Imagination and Modal Cognition (IMC) Lab, working under Felipe De Brigard at the Center for Cognitive Neuroscience. My work centers on how people remember — and specifically, what changes when the visual imagery that usually accompanies memory is diminished or absent, as in aphantasia.</p>
+      <p>I hold a <strong>B.S. in Neuroscience</strong> (minor in Chemistry) and a <strong>B.A. in Philosophy and Computer Science</strong> from the University of Miami (2022), where my undergraduate research spanned transdiagnostic youth mental health treatment and computational moral cognition. I also serve as the <strong>Undergraduate Intern Representative</strong> for the Cognitive Neuroscience Research Internship (CNRI).</p>
+      <p>I'm currently preparing applications for <strong>MD-PhD and PhD programs in cognitive and clinical neuroscience</strong>, targeting Fall 2027 admission.</p>
+    </div>
+    <div class="pill-row">
+      <span class="pill">R &amp; Python</span>
+      <span class="pill">Mixed-effects models</span>
+      <span class="pill">VR paradigms</span>
+      <span class="pill">SPSS</span>
+      <span class="pill">SQL</span>
+      <span class="pill">IRB &amp; protocol design</span>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Research</h2>
+    </div>
+    <p class="lede">A selection of the projects I've designed, run, or contributed statistical and operational work to.</p>
+
+    <div class="research-card">
+      <p class="research-title">Memory Without Mental Images: Aphantasia &amp; Virtual Reality</p>
+      <p class="research-role">Duke IMC Lab · PI Felipe De Brigard</p>
+      <p class="research-desc">A VR-based study dissociating the quantity, accuracy, and metacognitive awareness of episodic recall in individuals with aphantasia and hypophantasia, compared to controls, across immersive kitchen and living-room environments. Presented at CNS 2026 (Vancouver) and Triangle SfN 2026 (Raleigh).</p>
+    </div>
+
+    <div class="research-card">
+      <p class="research-title">Forgiveness and Autobiographical Memory</p>
+      <p class="research-role">Duke IMC Lab · Cross-national collaboration, Colombia &amp; United States</p>
+      <p class="research-desc">Investigating phenomenological and physiological differences between forgiven and unforgiven remembered wrongdoings, and how reappraisal strategies shape the emotions experienced when recalling autobiographical memories of wrongdoing.</p>
+    </div>
+
+    <div class="research-card">
+      <p class="research-title">The Moral Machine Project</p>
+      <p class="research-role">University of Miami · PIs Geoff Sutcliffe &amp; Debra Lieberman</p>
+      <p class="research-desc">Senior honors thesis in Philosophy evaluating normative ethical theories through autonomous-vehicle moral dilemmas, including an automated-reasoning presentation on formalizing those dilemmas computationally.</p>
+    </div>
+
+    <div class="research-card">
+      <p class="research-title">Idiosyncratic Treatment Outcomes in Transdiagnostic Youth</p>
+      <p class="research-role">University of Miami · PI Jill Ehrenreich-May</p>
+      <p class="research-desc">Senior honors thesis in Neuroscience examining idiographic outcome measures for telehealth delivery of the Unified Protocol for Transdiagnostic Treatment of Emotional Disorders in Youth.</p>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Publications &amp; Presentations</h2>
+    </div>
+    <p class="lede">Conference proceedings, most recent first.</p>
+    <ol class="pub-list">
+      <li class="pub-item">
+        <div>Sharma, A., De Brigard, F., Boere, K., Krempel, R., &amp; Blomkvist, A. (2026, April 10). Memory Without Mental Images: Dissociating Quantity, Accuracy, and Metacognition in Aphantasia and Hypophantasia Using Virtual Reality [Poster]. <span class="pub-venue">Triangle Society for Neuroscience 2026 Meeting</span>, Raleigh, NC.</div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Blomkvist, A., Krempel, R., Walsh, E., Boere, K., &amp; De Brigard, F. (2026, March 7–10). Memory Without Imagery: Episodic Recall and Meta-Cognitive Performance in Individuals with Aphantasia [Poster]. <span class="pub-venue">Cognitive Neuroscience Society 33rd Annual Meeting</span>, Vancouver, BC.</div>
+      </li>
+      <li class="pub-item">
+        <div>Fernández-Miranda, G., Faul, L., Alvarez, S., Martínez, M. J., Robelo, D., <strong>Sharma, A.</strong>, et al., De Brigard, F. (2026, March 7–10). Phenomenological and Physiological Differences Between Forgiven and Not Forgiven Remembered Wrongdoings in Samples from Colombia and the United States [Poster]. <span class="pub-venue">Cognitive Neuroscience Society 33rd Annual Meeting</span>, Vancouver, BC.</div>
+      </li>
+      <li class="pub-item">
+        <div>Robelo, D., Rivadeneira, G., Sharma, A., Fernández-Miranda, G., Santiago, A., &amp; De Brigard, F. (2025, July 25). The Effect of Reappraisal Strategies on the Emotions Experienced when Remembering Autobiographical Memories of Wrongdoings and their Relation to Forgiveness [Poster]. <span class="pub-venue">Summer Research Showcase</span>, Duke University.</div>
+      </li>
+      <li class="pub-item">
+        <div>Krishna, A., Tai, M., Sharma, A., &amp; Cousins, C. (2025, April 24). Markov Decision Process of Charitable Donations [Poster]. <span class="pub-venue">Cognitive Neuroscience Research Internship Poster Showcase</span>, Duke University.</div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Grassie, H., &amp; Ehrenreich-May, J. (2022, March 18). Using an Idiographic Outcome Measure to Assess the Effectiveness of Telemedicine Delivery of the Unified Protocol for Transdiagnostic Treatment of Emotional Disorders in Youth [Poster]. <span class="pub-venue">ADAA Anxiety and Depression Conference</span>, Denver, CO.</div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Grassie, H., &amp; Ehrenreich-May, J. (2021, November 19). Is the Problem the Solution: Evaluating Idiosyncratic Treatment Outcomes in a Transdiagnostic Youth Sample [Poster]. <span class="pub-venue">ABCT 55th Annual Convention SIG Poster Expo</span>, New York, NY.<span class="pub-tag">remote</span></div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Grassie, H., &amp; Ehrenreich-May, J. (2021, July 19). Is the Problem the Solution: Evaluating Idiosyncratic Treatment Outcomes in a Transdiagnostic Youth Sample [3-minute thesis]. <span class="pub-venue">PRIME Summer Research</span>, Coral Gables, FL.</div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Grassie, H., &amp; Ehrenreich-May, J. (2021, April 23). Is the Problem the Solution: Evaluating Idiosyncratic Treatment Outcomes in a Transdiagnostic Youth Sample [3-minute thesis]. <span class="pub-venue">Research Creativity Innovation Forum</span>, Coral Gables, FL.</div>
+      </li>
+      <li class="pub-item">
+        <div>Sharma, A., Grassie, H., &amp; Ehrenreich-May, J. (2021, April 26–30). Is the Problem the Solution: Evaluating Idiosyncratic Treatment Outcomes in a Transdiagnostic Youth Sample [Poster]. <span class="pub-venue">Research Celebration</span>, Coral Gables, FL.<span class="pub-tag">canceled</span></div>
+      </li>
+      <li class="pub-item">
+        <div>Sutcliffe, G., &amp; Sharma, A. (2021, May 25). Automated Theorem Proving: Morality Machine [Presentation]. <span class="pub-venue">Automated Reasoning with Legal Entities</span>, Luxembourg.<span class="pub-tag">remote</span></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Experience</h2>
+    </div>
+    <p class="lede">A condensed timeline — the full CV has complete role descriptions.</p>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">Jan 2025 — Present</div>
+        <div class="t-role">Lab Manager, Research Assistant &amp; SSNAP Coordinator</div>
+        <div class="t-org">Imagination and Modal Cognition Lab, Duke University · PI Felipe De Brigard</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Jan 2025 — Present</div>
+        <div class="t-role">Undergraduate Intern Representative &amp; Alumni Outreach Coordinator</div>
+        <div class="t-org">Cognitive Neuroscience Research Internship, Center for Cognitive Neuroscience</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Jan 2025 — Present</div>
+        <div class="t-role">Yoga Program Instructor</div>
+        <div class="t-org">Parks &amp; Recreation Department, City of Durham</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">June 2025 — Present</div>
+        <div class="t-role">Substitute Teacher</div>
+        <div class="t-org">Durham &amp; Chapel Hill–Carrboro City Schools</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Aug 2024 — Jan 2025</div>
+        <div class="t-role">Executive Assistant</div>
+        <div class="t-org">No More Tears Incorporated · Founder Somy Ali</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Aug 2024 — Dec 2024</div>
+        <div class="t-role">Contract Support Specialist</div>
+        <div class="t-org">Florida Department of Transportation</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Mar 2023 — Aug 2024</div>
+        <div class="t-role">Social Worker Associate</div>
+        <div class="t-org">Missouri CANHU, Dept. of Social Services</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Aug 2022 — Mar 2023</div>
+        <div class="t-role">Student Success Coach</div>
+        <div class="t-org">City Year, AmeriCorps</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Jan 2020 — June 2022</div>
+        <div class="t-role">Research Assistant</div>
+        <div class="t-org">Child and Adolescent Mood and Anxiety Lab, University of Miami · PI Jill Ehrenreich-May</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Awards &amp; Grants</h2>
+    </div>
+    <ul class="awards-list">
+      <li class="award-item">
+        <span class="award-name">Br41n.io Hackathon, NC State University — Winner</span>
+        <span class="award-amount">$1,000 · Apr 2026</span>
+      </li>
+      <li class="award-item">
+        <span class="award-name">The Miami Foundation Micro-Grant</span>
+        <span class="award-amount">$1,000 · Oct 2024</span>
+      </li>
+      <li class="award-item">
+        <span class="award-name">PRIME Summer Research Scholarship</span>
+        <span class="award-amount">$6,000 · Summer 2021</span>
+      </li>
+      <li class="award-item">
+        <span class="award-name">National Up To Us Campus Competition — Finalist</span>
+        <span class="award-amount">$2,500 · Spring 2021</span>
+      </li>
+      <li class="award-item">
+        <span class="award-name">Provost's Honor Roll &amp; Dean's List</span>
+        <span class="award-amount">Fall 2020 – Fall 2021</span>
+      </li>
+      <li class="award-item">
+        <span class="award-name">Dean's List</span>
+        <span class="award-amount">Fall 2018</span>
+      </li>
+    </ul>
+    <p class="cert-note">Certifications: Adult &amp; Pediatric First Aid/CPR/AED &amp; BBP · 200-Hour Yoga Teacher Training · Trauma-Informed Yoga · Reiki Level I/II/Master Teacher · Project Management Foundations &amp; Asana Mastery.<br>Memberships: Cognitive Neuroscience Society, Association for Behavioral and Cognitive Therapies, Triangle Chapter Society for Neuroscience.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-box">
+      <p class="lede">Reach out about research collaborations, mentorship, or graduate program conversations.</p>
+      <a class="btn btn-primary" href="mailto:anjou.sharma@duke.edu">anjou.sharma@duke.edu</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Anjou Sharma · Duke University, Center for Cognitive Neuroscience</div>
+</footer>
+
+</body>
+</html>
