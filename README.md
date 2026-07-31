@@ -1,6 +1,6 @@
 # Anjou Sharma — Research Website
 
-Personal academic site for graduate school applications (MD-PhD / PhD, Fall 2027).
+Personal academic site for graduate school applications. 
 
 **Live site:** anjousharma.com
 
